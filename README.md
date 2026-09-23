@@ -8,10 +8,19 @@ This implementation currently has the three parameter sets targetting NIST level
 
 ## Testing
 
-Run tests with the command
+To install dependencies and run MIKE tests run the command
 
 ```
+sage -python -m pip install -r requirements.txt
 sage -python -m pytest
+```
+
+If `sage -python` is not recognised (e.g. Sage installed via conda or pip), then
+you should be able to run the tests directly within python:
+
+```
+python -m pip install -r requirements.txt
+python -m pytest
 ```
 
 ## Implementation Notes
