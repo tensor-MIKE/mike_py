@@ -173,7 +173,7 @@ class Mike:
     # Utility Methods
     # ============================================================
 
-    def _lexicographically_smallest(self, Ai):
+    def _lexicographically_largest(self, Ai):
         """
         Rust encodes a Fp2 value to a || b, then interprets this as
         a single little endian integer. This is the same as sorting
@@ -182,12 +182,12 @@ class Mike:
         b = []
         for A in Ai:
             b.append([A[1], A[0]])
-        b_min = min(b)
-        return self.Fp2([b_min[1], b_min[0]])
+        b_max = max(b)
+        return self.Fp2([b_max[1], b_max[0]])
 
     def _normalize_montgomery(self, four_torsion):
         """
-        Given a point P of order four on E, select the smallest of the 12 possible
+        Given a point P of order four on E, select the largest of the 12 possible
         public keys which can be computed from the various symmetries of the MIKE
         key exchange
         """
@@ -206,7 +206,7 @@ class Mike:
         A5 = -A2
         A6, A7, A8, A9, A10, A11 = (x.conjugate() for x in (A0, A1, A2, A3, A4, A5))
 
-        A = self._lexicographically_smallest(
+        A = self._lexicographically_largest(
             [A0, A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11]
         )
         return EllipticCurve(self.Fp2, [0, A, 0, 1, 0])
@@ -240,7 +240,7 @@ class Mike:
         # isogeny chain
         four_torsion = four_isogeny_chain(self.E0, k, self.e)
 
-        # Normalize the codomain to the lexicographically smallest of
+        # Normalize the codomain to the lexicographically largest of
         # the 6 possible isomorphic Montgomery coefficients A and their
         # complex conjugates
         return self._normalize_montgomery(four_torsion)
