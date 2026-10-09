@@ -3,7 +3,15 @@ from pathlib import Path
 
 import pytest
 
-from mike.mike import Mike, PARAMS_I, PARAMS_III, PARAMS_V
+from mike.mike import (
+    Mike,
+    PARAMS_I,
+    PARAMS_III,
+    PARAMS_V,
+    CONSERVATIVE_PARAMS_I,
+    CONSERVATIVE_PARAMS_III,
+    CONSERVATIVE_PARAMS_V,
+)
 
 KAT_PATH = Path(__file__).parent / "test_data.json"
 KAT_DATA = json.loads(KAT_PATH.read_text())
@@ -12,6 +20,9 @@ PARAMS = {
     "PARAMS_I": PARAMS_I,
     "PARAMS_III": PARAMS_III,
     "PARAMS_V": PARAMS_V,
+    "CONSERVATIVE_PARAMS_I": CONSERVATIVE_PARAMS_I,
+    "CONSERVATIVE_PARAMS_III": CONSERVATIVE_PARAMS_III,
+    "CONSERVATIVE_PARAMS_V": CONSERVATIVE_PARAMS_V,
 }
 
 

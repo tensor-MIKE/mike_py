@@ -8,8 +8,28 @@ from gluing.mike_gluing import gluing_isogeny
 from dim_four.isogeny_chain import dim_four_isogeny_chain
 from utilities.aes256_ctr_drbg import AES256_CTR_DRBG
 
+# Conservative parameters for MIKE for prime p = c * 2**f - 1
+# with isogeny chains of length e
+CONSERVATIVE_PARAMS_I = {
+    "f": 374,
+    "c": 117,
+    "e": 372,
+}
 
-# Parameters for MIKE for prime p = c * 2**f - 1 with isogeny chains of length e
+CONSERVATIVE_PARAMS_III = {
+    "f": 566,
+    "c": 77,
+    "e": 564,
+}
+
+CONSERVATIVE_PARAMS_V = {
+    "f": 758,
+    "c": 41,
+    "e": 756,
+}
+
+# Fast parameters for MIKE for prime p = c * 2**f - 1
+# with isogeny chains of length e
 PARAMS_I = {
     "f": 308,
     "c": 633,
@@ -74,7 +94,7 @@ class Mike:
         gluing_kernel, chain_kernel = self._generate_kernel_data(EB, x)
 
         # Compute the image of the chain kernel through the gluing isogeny
-        (domain, chain_kernel) = gluing_isogeny(EB, gluing_kernel, chain_kernel)
+        domain, chain_kernel = gluing_isogeny(EB, gluing_kernel, chain_kernel)
 
         # Compute the codomain of the dim 4 isogeny chain after gluing
         codomain = dim_four_isogeny_chain(domain, chain_kernel, self.e - 3)
@@ -167,7 +187,7 @@ class Mike:
             return self.E0(x_new, y_new)
 
         # Compute the new basis from the special E0 basis
-        (self.P0, self.Q0) = [iso(P) for P in (P0, Q0)]
+        self.P0, self.Q0 = [iso(P) for P in (P0, Q0)]
 
     # ============================================================
     # Utility Methods
