@@ -4,7 +4,21 @@ A SageMath implementation of the isogeny based NIKE: MIKE
 
 ## Parameter sets
 
-This implementation currently has the three parameter sets targetting NIST levels I, III, V for the "FastMIKE" family.
+This implementation currently has the three parameter sets targetting NIST levels I, III, V for both the "FastMIKE" and "ConservativeMIKE" families. Including your own parameter set is as easy as picking 
+
+```py
+from mike.mike import Mike
+
+YOUR_PARAMS = {
+    "f": ...,
+    "c": ...,
+    "e": ...,
+}
+
+mike = Mike(YOUR_PARAMS)
+```
+
+such that `e <= f - 2` and `c * 2^f - 1` is prime.
 
 ## Testing
 
