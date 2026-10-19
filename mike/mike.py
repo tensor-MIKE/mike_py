@@ -162,8 +162,8 @@ class Mike:
 
         To do this, we pick alpha, a root of  x(x + 1)(x - 1) to be 0, 1, or -1.
         We then compute s = 1 / (3*alpha^2 - 1) such that
-        E0_M : B * y^2 = x^3 + Ax^2 + x; A = 3 alpha s, B = s
-        (x, y) -> (s(x - alpha), sy)
+        E0_M : B * y^2 = x^3 + Ax^2 + x; A = -3 alpha s, B = s
+        (x, y) -> (s(x + alpha), sy)
 
         We see that to ensure that Q is mapped above (0, 0) we must select
         alpha = 1. We also want B = 1, so we need to have another factor of
